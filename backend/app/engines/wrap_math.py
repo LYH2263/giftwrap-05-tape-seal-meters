@@ -16,3 +16,18 @@ def ribbon_estimate(length: float, width: float, height: float, wrap_style: str 
     else:
         meters = girth * 2 + L + 0.5
     return {"wrap_style": wrap_style, "ribbon_m": round(meters, 2)}
+
+
+def tape_length(length: float, width: float, margin: float = 0.0) -> dict:
+    """Sealing tape: one lap around length+width, plus registered spare margin (meters).
+
+    Tape is a separate field from paper area and must never be folded into paper_m2.
+    """
+    L, W = float(length), float(width)
+    if min(L, W) <= 0:
+        raise ValueError("box dimensions must be positive")
+    margin = float(margin)
+    if margin < 0:
+        raise ValueError("tape margin must be non-negative")
+    meters = 2 * (L + W) + margin
+    return {"tape_m": round(meters, 3), "tape_margin_m": margin}

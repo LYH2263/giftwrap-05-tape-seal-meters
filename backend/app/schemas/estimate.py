@@ -6,3 +6,5 @@ class EstimateRequest(BaseModel):
     wrap_style: str = "cross"
     save: bool = False
     note: str = ""
+    tape_enabled: bool | None = None
+    tape_margin_m: float | None = None

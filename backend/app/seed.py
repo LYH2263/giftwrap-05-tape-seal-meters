@@ -19,5 +19,7 @@ def init_db():
             ("牛皮纸0.7m",0.7,"clean",""),
         ])
         c.execute("INSERT INTO settings(key,value) VALUES ('overlap','1.15')")
+        c.execute("INSERT INTO settings(key,value) VALUES ('tape_enabled','false')")
+        c.execute("INSERT INTO settings(key,value) VALUES ('tape_margin_m','0.0')")
         c.commit()
     c.close()

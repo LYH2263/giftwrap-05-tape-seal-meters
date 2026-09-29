@@ -296,6 +296,24 @@ select {
   color: var(--ink);
 }
 
+input.num {
+  width: 6.5rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 button,
 .btn {
   display: inline-flex;
@@ -425,6 +443,17 @@ button.ribbon:hover {
   font-weight: 500;
   color: var(--ink-soft);
   margin-left: 0.25rem;
+}
+
+.figure-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  align-items: baseline;
+}
+
+.figure.tape {
+  color: var(--ribbon);
 }
 
 .bad {
