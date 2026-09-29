@@ -29,3 +29,21 @@ def list_runs(limit=50):
         return out
     finally:
         c.close()
+
+def get_run(run_id):
+    # READ-ONLY: return the frozen result_json as written. Never recompute
+    # paper/tape from current settings — the saved record is the truth.
+    c = connect()
+    try:
+        row = c.execute(
+            """SELECT r.*, b.name box_name FROM calc_runs r
+               LEFT JOIN boxes b ON b.id=r.box_id WHERE r.id=?""",
+            (run_id,),
+        ).fetchone()
+        if row is None:
+            return None
+        d = dict(row)
+        d["result"] = json.loads(d.pop("result_json"))
+        return d
+    finally:
+        c.close()

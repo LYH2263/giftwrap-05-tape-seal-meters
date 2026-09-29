@@ -16,3 +16,16 @@ def ribbon_estimate(length: float, width: float, height: float, wrap_style: str 
     else:
         meters = girth * 2 + L + 0.5
     return {"wrap_style": wrap_style, "ribbon_m": round(meters, 2)}
+
+
+def tape_estimate(length: float, width: float, allowance_m: float) -> dict:
+    """Sealing-tape length in meters: one girth around length/width plus an allowance.
+
+    Kept separate from paper area — tape meters must never be merged into paper_m2.
+    """
+    L, W = float(length), float(width)
+    a = float(allowance_m)
+    if a < 0:
+        raise ValueError("tape allowance must not be negative")
+    meters = 2 * (L + W) + a
+    return {"tape_m": round(meters, 2), "allowance_m": a}
